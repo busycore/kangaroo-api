@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "uXDCP9KXRxhS1TNUlaA3wrC30APojNwnW91ONfJ8pGo=",
+  "Source": "kangaroo-api",
+  "BasePath": "_content/kangaroo-api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

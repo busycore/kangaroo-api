@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "4rTcJ50HYrob7lbFIqFSOkE0vD3g2g7tjK4c3xhg+RTtBElGq2O1QKzENqsJspDrJe68AjiOyxPiAfM3kyH3xg==",
+  "dgSpecHash": "+Np6bJb25oIgv6959Y/tKgFek7jiHwDrz0VzT0Y14XxPisZwFR0nvVUzaklaFV+1cZgBVwbMDCmvGD5yz1hQWw==",
   "success": true,
   "projectFilePath": "/home/matt/Documentos/Source/kangarooApi/matheus-vargem-interview/kangaroo-api/kangaroo-api.csproj",
   "expectedPackageFiles": [
+    "/home/matt/.nuget/packages/automapper/11.0.0/automapper.11.0.0.nupkg.sha512",
+    "/home/matt/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/11.0.0/automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "/home/matt/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
+    "/home/matt/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/home/matt/.nuget/packages/microsoft.data.sqlite.core/6.0.3/microsoft.data.sqlite.core.6.0.3.nupkg.sha512",
     "/home/matt/.nuget/packages/microsoft.entityframeworkcore/6.0.3/microsoft.entityframeworkcore.6.0.3.nupkg.sha512",
     "/home/matt/.nuget/packages/microsoft.entityframeworkcore.abstractions/6.0.3/microsoft.entityframeworkcore.abstractions.6.0.3.nupkg.sha512",

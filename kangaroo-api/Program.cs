@@ -1,3 +1,6 @@
+using kangaroo_api.Domains.Users.Repositories;
+using kangaroo_api.Domains.Users.Services;
+using kangaroo_api.Domains.Users.Services.Implementations.GetAllUsersService;
 using kangaroo_api.shared.Configurations.DatabaseConfigurations;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,7 +13,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Services
+builder.Services.AddTransient<UserServices>();
+builder.Services.AddTransient<IGetAllUsersService, GetAllUsersService>();
 
+//Repositories
+builder.Services.AddTransient<IUsersRepository, UsersRepository>();
+
+
+//AutoMapper
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
+//Database
 builder.Services.AddDbContext<DataContext>(options =>
 {
     var connection = builder.Configuration.GetConnectionString("SqliteConnection");

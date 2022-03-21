@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.3">
       <PrivateAssets>all</PrivateAssets>
@@ -20,6 +21,7 @@
   <ItemGroup>
     <Compile Remove="Controllers\**" />
     <Compile Remove="WeatherForecast.cs" />
+    <Compile Remove="src\Domains\Users\Services\IUserServices.cs" />
   </ItemGroup>
 
   <ItemGroup>

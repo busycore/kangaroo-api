@@ -528,5 +528,7 @@ FodyWeavers.xsd
 
 *.db
 
-kangaroo-api/obj/
-kangaroo-api/bin/
+/kangaroo-api/obj/
+/kangaroo-api/bin/
+/kangaroo-api.test/bin/
+/kangaroo-api.test/obj/

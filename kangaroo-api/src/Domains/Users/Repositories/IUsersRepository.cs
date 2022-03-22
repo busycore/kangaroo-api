@@ -9,4 +9,6 @@ public interface IUsersRepository
     Task<User> findByEmail(String email);
     Task<User> Create(User user);
     Task<User> Persists(User user);
+    
+    Task<User> findById(int id);
 }

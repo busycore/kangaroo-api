@@ -41,4 +41,10 @@ public class UsersRepository : IUsersRepository
             return user;
         });
     }
+    
+    public async Task<User> findById(int id)
+    {
+        return await this._context.Users.FirstOrDefaultAsync(user => user.id == id);
+    }
+
 }

@@ -34,4 +34,11 @@ public class UsersController : ControllerBase
         GetUserDTO createdUser = this.mapper.Map<GetUserDTO>(await this.userServices.CreateUser(user));
         return StatusCode(201, createdUser);
     }
+    
+    [HttpPut("{id}")]
+    public async Task<ActionResult<GetUserDTO>> UpdateUser(int id, CreateUserDTO userDTO)
+    {
+        User user = this.mapper.Map<User>(userDTO);
+        return StatusCode(200, this.mapper.Map<GetUserDTO>(await this.userServices.UpdateUser(id, user)));
+    }
 }

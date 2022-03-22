@@ -527,3 +527,6 @@ FodyWeavers.xsd
 *.sln.iml
 
 *.db
+
+kangaroo-api/obj/
+kangaroo-api/bin/

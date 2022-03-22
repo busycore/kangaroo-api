@@ -1,11 +1,15 @@
+using System.Text;
 using kangaroo_api.Domains.Users.Repositories;
 using kangaroo_api.Domains.Users.Services;
 using kangaroo_api.Domains.Users.Services.Implementations.CreateUserService;
 using kangaroo_api.Domains.Users.Services.Implementations.GetAllUsersService;
 using kangaroo_api.Domains.Users.Services.Implementations.GetUserByEmailService;
 using kangaroo_api.Domains.Users.Services.Implementations.GetUserById;
+using kangaroo_api.Domains.Users.Services.Implementations.LoginService;
 using kangaroo_api.shared.Configurations.DatabaseConfigurations;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +26,7 @@ builder.Services.AddTransient<IGetAllUsersService, GetAllUsersService>();
 builder.Services.AddTransient<IGetUserByEmailService, GetUserByEmailService>();
 builder.Services.AddTransient<ICreateUserService, CreateUserService>();
 builder.Services.AddTransient<IGetUserById, GetUserById>();
+builder.Services.AddTransient<ILoginService, LoginService>();
 
 //Repositories
 builder.Services.AddTransient<IUsersRepository, UsersRepository>();
@@ -38,6 +43,19 @@ builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlite(connection);
 });
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey =
+            new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration.GetSection("Security:JWT_SECRET").Value)),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -50,6 +68,7 @@ app.UseExceptionHandler("/error");
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

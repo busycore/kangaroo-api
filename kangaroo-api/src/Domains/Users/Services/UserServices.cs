@@ -5,6 +5,7 @@ using kangaroo_api.Domains.Users.Services.Implementations.CreateUserService;
 using kangaroo_api.Domains.Users.Services.Implementations.GetAllUsersService;
 using kangaroo_api.Domains.Users.Services.Implementations.GetUserByEmailService;
 using kangaroo_api.Domains.Users.Services.Implementations.GetUserById;
+using kangaroo_api.Domains.Users.Services.Implementations.LoginService;
 using kangaroo_api.shared.Configurations.Errors.Exceptions;
 
 namespace kangaroo_api.Domains.Users.Services;
@@ -16,13 +17,15 @@ public class UserServices
     private readonly ICreateUserService createUserService;
     private readonly IGetUserById getUserByIdService;
     private readonly IUsersRepository usersRepository;
-    public UserServices(IGetAllUsersService getAllUsersService, IGetUserByEmailService getUserByEmailService,ICreateUserService createUserService, IGetUserById getUserByIdService, IUsersRepository usersRepository)
+    private readonly ILoginService loginService;
+    public UserServices(IGetAllUsersService getAllUsersService, IGetUserByEmailService getUserByEmailService,ICreateUserService createUserService, IGetUserById getUserByIdService, IUsersRepository usersRepository, ILoginService loginService)
     {
         this.getAllUsersService = getAllUsersService;
         this.getUserByEmailService = getUserByEmailService;
         this.createUserService = createUserService;
         this.getUserByIdService = getUserByIdService;
         this.usersRepository = usersRepository;
+        this.loginService = loginService;
     }
 
     public async Task<List<User>> GetAllUsers()
@@ -53,7 +56,7 @@ public class UserServices
         }
         return userExists;
     }
-    async public Task<User> UpdateUser(int id, User user)
+    public async Task<User> UpdateUser(int id, User user)
     {
         var userExists = await this.GetUserById(id);
 
@@ -61,5 +64,21 @@ public class UserServices
         userExists.password = user.password;
 
         return await this.usersRepository.Persists(userExists);
+    }
+    
+    public async Task<String> login(String email,String password)
+    {
+        var foundUser = await this.GetUserByEmail(email);
+        if (foundUser == null)
+        {
+            throw new HttpException(HttpStatusCode.NotFound,"User not found");
+        }
+
+        if (password != foundUser.password)
+        {
+            throw new HttpException(HttpStatusCode.BadGateway, "Wrong Password");
+        }
+
+        return loginService.execute(foundUser);
     }
 }

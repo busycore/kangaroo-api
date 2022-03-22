@@ -1,7 +1,9 @@
 using AutoMapper;
 using kangaroo_api.Domains.Users.dtos;
 using kangaroo_api.Domains.Users.Models;
+using kangaroo_api.Domains.Users.Repositories;
 using kangaroo_api.Domains.Users.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace kangaroo_api.Domains.Users.Controllers;
@@ -19,8 +21,9 @@ public class UsersController : ControllerBase
         this.userServices = userServices;
         this.mapper = mapper;
     }
-
+    
     [HttpGet]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<List<User>>> GetAllUsers()
     {
         List<User> listOfUsers = await this.userServices.GetAllUsers();
@@ -41,4 +44,12 @@ public class UsersController : ControllerBase
         User user = this.mapper.Map<User>(userDTO);
         return StatusCode(200, this.mapper.Map<GetUserDTO>(await this.userServices.UpdateUser(id, user)));
     }
+    
+    [HttpPost("login/")]
+    public async Task<ActionResult<String>> UserLogin(UserLoginDTO user)
+    {
+        return StatusCode(200,await this.userServices.login(user.email,user.password)) ;
+    }
+
+
 }

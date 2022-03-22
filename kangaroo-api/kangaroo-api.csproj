@@ -22,22 +22,4 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.16.0" />
   </ItemGroup>
 
-<!--  <ItemGroup>-->
-<!--    <Compile Remove="Controllers\**" />-->
-<!--    <Compile Remove="WeatherForecast.cs" />-->
-<!--    <Compile Remove="src\Domains\Users\Services\IUserServices.cs" />-->
-<!--  </ItemGroup>-->
-
-<!--  <ItemGroup>-->
-<!--    <EmbeddedResource Remove="Controllers\**" />-->
-<!--  </ItemGroup>-->
-
-<!--  <ItemGroup>-->
-<!--    <None Remove="Controllers\**" />-->
-<!--  </ItemGroup>-->
-
-<!--  <ItemGroup>-->
-<!--    <Content Remove="Controllers\**" />-->
-<!--  </ItemGroup>-->
-
 </Project>

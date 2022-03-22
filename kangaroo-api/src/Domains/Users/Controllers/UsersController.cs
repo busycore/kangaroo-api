@@ -1,7 +1,6 @@
 using AutoMapper;
 using kangaroo_api.Domains.Users.dtos;
 using kangaroo_api.Domains.Users.Models;
-using kangaroo_api.Domains.Users.Repositories;
 using kangaroo_api.Domains.Users.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

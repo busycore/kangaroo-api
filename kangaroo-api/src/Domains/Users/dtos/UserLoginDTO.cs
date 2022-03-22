@@ -1,4 +1,4 @@
-namespace kangaroo_api.Domains.Users.Repositories;
+namespace kangaroo_api.Domains.Users.dtos;
 
 public class UserLoginDTO
 {

@@ -18,5 +18,9 @@ public class UsersRepository : IUsersRepository
         return await this._context.Users.AsNoTracking().ToListAsync();
     }
     
-    
+    Task<User> IUsersRepository.findByEmail(String email)
+    {
+        Task<User> foundUser = this._context.Users.FirstOrDefaultAsync(user => user.email == email);
+        return foundUser;
+    }
 }

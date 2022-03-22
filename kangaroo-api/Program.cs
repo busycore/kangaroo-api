@@ -1,6 +1,7 @@
 using kangaroo_api.Domains.Users.Repositories;
 using kangaroo_api.Domains.Users.Services;
 using kangaroo_api.Domains.Users.Services.Implementations.GetAllUsersService;
+using kangaroo_api.Domains.Users.Services.Implementations.GetUserByEmailService;
 using kangaroo_api.shared.Configurations.DatabaseConfigurations;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,7 @@ builder.Services.AddSwaggerGen();
 //Services
 builder.Services.AddTransient<UserServices>();
 builder.Services.AddTransient<IGetAllUsersService, GetAllUsersService>();
+builder.Services.AddTransient<IGetUserByEmailService, GetUserByEmailService>();
 
 //Repositories
 builder.Services.AddTransient<IUsersRepository, UsersRepository>();

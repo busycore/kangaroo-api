@@ -7,4 +7,6 @@ public interface IUsersRepository
     Task<List<User>> findAll();
     
     Task<User> findByEmail(String email);
+    Task<User> Create(User user);
+    Task<User> Persists(User user);
 }

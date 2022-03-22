@@ -26,4 +26,12 @@ public class UsersController : ControllerBase
         List<User> listOfUsers = await this.userServices.GetAllUsers();
         return Ok(listOfUsers.Select(user => this.mapper.Map<GetUserDTO>(user)).ToList());
     }    
+    
+    [HttpPost]
+    public async Task<ActionResult<GetUserDTO>> CreateUser(CreateUserDTO userDTO)
+    {
+        User user = this.mapper.Map<User>(userDTO);
+        GetUserDTO createdUser = this.mapper.Map<GetUserDTO>(await this.userServices.CreateUser(user));
+        return StatusCode(201, createdUser);
+    }
 }

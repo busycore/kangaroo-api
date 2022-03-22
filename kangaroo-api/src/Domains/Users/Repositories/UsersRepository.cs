@@ -23,4 +23,22 @@ public class UsersRepository : IUsersRepository
         Task<User> foundUser = this._context.Users.FirstOrDefaultAsync(user => user.email == email);
         return foundUser;
     }
+    public async Task<User> Create(User user)
+    {
+        return await Task.Run(async () =>
+        {
+            var createdUser = this._context.Add(user);
+            return await this.Persists(createdUser.Entity);
+        });
+
+    }
+    
+    public async Task<User> Persists(User user)
+    {
+        return await Task.Run(async () =>
+        {
+            await this._context.SaveChangesAsync();
+            return user;
+        });
+    }
 }

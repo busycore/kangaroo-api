@@ -1,5 +1,6 @@
 using kangaroo_api.Domains.Users.Repositories;
 using kangaroo_api.Domains.Users.Services;
+using kangaroo_api.Domains.Users.Services.Implementations.CreateUserService;
 using kangaroo_api.Domains.Users.Services.Implementations.GetAllUsersService;
 using kangaroo_api.Domains.Users.Services.Implementations.GetUserByEmailService;
 using kangaroo_api.shared.Configurations.DatabaseConfigurations;
@@ -18,6 +19,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<UserServices>();
 builder.Services.AddTransient<IGetAllUsersService, GetAllUsersService>();
 builder.Services.AddTransient<IGetUserByEmailService, GetUserByEmailService>();
+builder.Services.AddTransient<ICreateUserService, CreateUserService>();
 
 //Repositories
 builder.Services.AddTransient<IUsersRepository, UsersRepository>();
